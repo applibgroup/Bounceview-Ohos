@@ -206,7 +206,7 @@ public class MainAbilitySlice extends AbilitySlice  {
             tab1.setIconElement(pixelMapElement);
             tab1.setPadding(20, 0, 5, 5);
         } catch (NotExistException | IOException e) {
-            //LogUtil.error(TAG, "createTabIcon " + e.getLocalizedMessage());
+            // Exception
         }
         tab1.setText("Tab1");
         tabList.addTab(tab1);
@@ -220,7 +220,7 @@ public class MainAbilitySlice extends AbilitySlice  {
             tab2.setIconElement(pixelMapElement);
             tab2.setPadding(20, 0, 20, 5);
         } catch (NotExistException | IOException e) {
-            //LogUtil.error(TAG, "createTabIcon " + e.getLocalizedMessage());
+            // Exception
         }
         tab2.setText("Tab2");
         tabList.addTab(tab2);
@@ -234,7 +234,7 @@ public class MainAbilitySlice extends AbilitySlice  {
             tab3.setIconElement(pixelMapElement);
             tab3.setPadding(20, 0, 20, 5);
         } catch (NotExistException | IOException e) {
-            //LogUtil.error(TAG, "createTabIcon " + e.getLocalizedMessage());
+            // Exception
         }
         tab3.setText("Tab3");
         tabList.addTab(tab3);

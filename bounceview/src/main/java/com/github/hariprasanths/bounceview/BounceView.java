@@ -28,16 +28,28 @@ public class BounceView implements BounceViewAnim {
     private WeakReference<CustomPopupDialog> mPopup;
     private WeakReference<TabList> mTabList;
     private boolean isTouchInsideView = true;
-    private float pushInScaleX = PUSH_IN_SCALE_X;
-    private float pushInScaleY = PUSH_IN_SCALE_Y;
-    private float popOutScaleX = POP_OUT_SCALE_X;
-    private float popOutScaleY = POP_OUT_SCALE_Y;
-    private int pushInAnimDuration = PUSH_IN_ANIM_DURATION;
-    private int popOutAnimDuration = POP_OUT_ANIM_DURATION;
-    private Animator pushInInterpolator = DEFAULT_INTERPOLATOR;
+    private float pushInScaleX;
+    private float pushInScaleY;
+    private float popOutScaleX;
+    private float popOutScaleY;
+    private int pushInAnimDuration;
+    private int popOutAnimDuration;
+    private Animator pushInInterpolator;
     private Animator popOutInterpolator = DEFAULT_INTERPOLATOR;
 
+    private void checkFieldsValue() {
+        pushInScaleX = PUSH_IN_SCALE_X;
+        pushInScaleY = PUSH_IN_SCALE_Y;
+        popOutScaleX = POP_OUT_SCALE_X;
+        popOutScaleY = POP_OUT_SCALE_Y;
+        pushInAnimDuration = PUSH_IN_ANIM_DURATION;
+        popOutAnimDuration = POP_OUT_ANIM_DURATION;
+        pushInInterpolator = DEFAULT_INTERPOLATOR;
+        popOutInterpolator = DEFAULT_INTERPOLATOR;
+    }
+
     private BounceView(Component component1) {
+        checkFieldsValue();
         this.mComponent = new WeakReference<>(component1);
         if (this.mComponent.get() != null && this.mComponent.get().getClickedListener() == null) {
             this.mComponent.get().setClickedListener(component -> { });
@@ -45,14 +57,17 @@ public class BounceView implements BounceViewAnim {
     }
 
     private BounceView(CustomDialog dialog) {
+        checkFieldsValue();
         this.mDialog = new WeakReference<>(dialog);
     }
 
     private BounceView(CustomPopupDialog popup) {
+        checkFieldsValue();
         this.mPopup = new WeakReference<>(popup);
     }
 
     private BounceView(TabList tabList) {
+        checkFieldsValue();
         this.mTabList = new WeakReference<>(tabList);
     }
 
@@ -245,17 +260,17 @@ public class BounceView implements BounceViewAnim {
                 @Override
                 public void onEnd(Animator animator) {
                     new Timer().schedule(
-                         new TimerTask() {
-                            @Override
-                             public void run() {
-                                component.getContext().getUITaskDispatcher().asyncDispatch(() -> {
-                                    AnimatorProperty animatorProperty1 = component.createAnimatorProperty()
-                                            .scaleX(1).scaleY(1).scaleXFrom(1.04f).scaleYFrom(1.04f)
-                                            .setDuration(100)
-                                            .setCurveType(Animator.CurveType.ACCELERATE_DECELERATE);
-                                    animatorProperty1.start();
-                                });
-                            }
+                            new TimerTask() {
+                                @Override
+                                public void run() {
+                                    component.getContext().getUITaskDispatcher().asyncDispatch(() -> {
+                                        AnimatorProperty animatorProperty1 = component.createAnimatorProperty()
+                                                .scaleX(1).scaleY(1).scaleXFrom(1.04f).scaleYFrom(1.04f)
+                                                .setDuration(100)
+                                                .setCurveType(Animator.CurveType.ACCELERATE_DECELERATE);
+                                        animatorProperty1.start();
+                                    });
+                                }
                             }, 200);
                 }
 
@@ -303,9 +318,9 @@ public class BounceView implements BounceViewAnim {
                                 public void run() {
                                     component.getContext().getUITaskDispatcher()
                                             .asyncDispatch(() -> component.createAnimatorProperty()
-                                            .scaleX(1).scaleY(1).scaleXFrom(1.04f).scaleYFrom(1.04f)
-                                            .setDuration(100).setCurveType(Animator.CurveType.ACCELERATE_DECELERATE)
-                                            .start());
+                                                    .scaleX(1).scaleY(1).scaleXFrom(1.04f).scaleYFrom(1.04f)
+                                                    .setDuration(100).setCurveType(Animator.CurveType.ACCELERATE_DECELERATE)
+                                                    .start());
                                 }
                             }, 200);
                 }
