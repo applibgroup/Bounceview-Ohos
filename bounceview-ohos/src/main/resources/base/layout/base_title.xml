@@ -4,11 +4,11 @@
     ohos:height="match_content"
     ohos:width="match_parent"
     ohos:orientation="vertical"
-    ohos:id="$+id:titleXml">
+    ohos:id="$+id:base_title_xml">
     <Text
         ohos:height="match_content"
         ohos:width="match_parent"
-        ohos:id="$+id:titleText"
+        ohos:id="$+id:base_title_text"
         ohos:text_size="22fp"
         ohos:text_alignment="center"
         ohos:text_color="black"
@@ -19,8 +19,7 @@
         ohos:height="match_content"
         ohos:width="match_parent"
         ohos:margin="10fp"
-        ohos:id="$+id:subTitleText"
-        ohos:text=""
+        ohos:id="$+id:base_sub_title_text"
         ohos:text_size="18fp"
         ohos:text_alignment="center"
         ohos:text_color="black"

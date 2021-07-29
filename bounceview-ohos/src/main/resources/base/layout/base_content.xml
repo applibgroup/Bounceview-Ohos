@@ -3,7 +3,7 @@
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:height="match_content"
     ohos:width="match_content"
-    ohos:id="$+id:contentXml"
+    ohos:id="$+id:base_content_xml"
     ohos:top_margin="10fp"
     ohos:alignment="center"
     ohos:left_margin="10fp"
@@ -13,12 +13,12 @@
     <Image
         ohos:height="match_content"
         ohos:width="match_content"
-        ohos:id="$+id:imgContent"
+        ohos:id="$+id:base_content_image"
         ohos:visibility="hide"
         />
     <Text
         ohos:height="match_content"
-        ohos:id="$+id:contentText"
+        ohos:id="$+id:base_content_text"
         ohos:width="match_content"
         ohos:layout_alignment="center"
         ohos:margin="10px"

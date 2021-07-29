@@ -39,7 +39,7 @@ public class CustomPopupDialog extends PopupDialog {
      * Constructor to create Custom Popup dialog.
      *
      * @param context context
-     * @param contentComponent contentComponent
+     * @param contentComponent contentComponent - will be used for setting height and width of popup dialog
      */
     public CustomPopupDialog(Context context, Component contentComponent) {
         super(context, contentComponent);
@@ -47,8 +47,19 @@ public class CustomPopupDialog extends PopupDialog {
                 .parse(ResourceTable.Layout_base_popup_dialog, null, false);
     }
 
+    /**
+     * Constructor with specific width and height for dialog and setting contentComponent.
+     *
+     * @param context for creating dialog
+     * @param contentComponent component to set
+     * @param width dialog width
+     * @param height dialog height
+     */
     public CustomPopupDialog(Context context, Component contentComponent, int width, int height) {
         super(context, contentComponent, width, height);
+        mCustomComponent = contentComponent;
+        basePopupLayout = (DirectionalLayout) LayoutScatter.getInstance(context)
+                .parse(ResourceTable.Layout_base_popup_dialog, null, false);
     }
 
     public Component getCustomComponent() {
@@ -80,7 +91,7 @@ public class CustomPopupDialog extends PopupDialog {
      */
     @Override
     public PopupDialog setText(String text) {
-        Text contentText = (Text) basePopupLayout.findComponentById(ResourceTable.Id_temp_text);
+        Text contentText = (Text) basePopupLayout.findComponentById(ResourceTable.Id_base_text);
         contentText.setText(text);
         mBaseComponent = basePopupLayout;
         return this;
@@ -95,7 +106,7 @@ public class CustomPopupDialog extends PopupDialog {
     @Override
     public void setBackColor(Color color) {
         DirectionalLayout directionalLayout =
-                (DirectionalLayout) basePopupLayout.findComponentById(ResourceTable.Id_temp_Layout);
+                (DirectionalLayout) basePopupLayout.findComponentById(ResourceTable.Id_base_popup_layout);
         directionalLayout.setBackground(buildDrawableByColor(color.getValue()));
         mBaseComponent = basePopupLayout;
     }

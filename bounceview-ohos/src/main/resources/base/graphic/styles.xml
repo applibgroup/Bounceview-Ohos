@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <element name="CustomDialogAnimation">
-        <item name="ohos:setBackground">@anim/bounce_anim</item>
-    </element>
-</resources>

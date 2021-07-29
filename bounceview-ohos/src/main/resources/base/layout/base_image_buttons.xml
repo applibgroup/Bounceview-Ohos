@@ -8,12 +8,12 @@
     ohos:left_margin="10fp"
     ohos:right_margin="10fp"
     ohos:bottom_margin="20fp"
-    ohos:id="$+id:image_buttonXml"
+    ohos:id="$+id:base_image_button_xml"
     >
     <Image
         ohos:height="match_content"
         ohos:width="match_content"
-        ohos:id="$+id:imgb0"
+        ohos:id="$+id:base_image_button_0"
         ohos:layout_alignment="left"
         ohos:visibility="hide"
         ohos:left_margin="10fp"
@@ -22,14 +22,14 @@
     <Image
         ohos:height="match_content"
         ohos:width="match_content"
-        ohos:id="$+id:imgb1"
+        ohos:id="$+id:base_image_button_1"
         ohos:visibility="hide"
         ohos:clickable="true"
         />
     <Image
         ohos:height="match_content"
         ohos:width="match_content"
-        ohos:id="$+id:imgb2"
+        ohos:id="$+id:base_image_button_2"
         ohos:visibility="hide"
         ohos:clickable="true"
         />

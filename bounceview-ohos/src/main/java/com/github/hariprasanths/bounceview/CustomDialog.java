@@ -103,7 +103,7 @@ public class CustomDialog extends CommonDialog {
 
     @Override
     public CommonDialog setTitleText(String text) {
-        Text titleText = (Text) baseTitleLayout.findComponentById(ResourceTable.Id_titleText);
+        Text titleText = (Text) baseTitleLayout.findComponentById(ResourceTable.Id_base_title_text);
         titleText.setText(text);
         titleText.setVisibility(Component.VISIBLE);
         this.setTitleCustomComponent((DirectionalLayout) baseTitleLayout);
@@ -112,7 +112,7 @@ public class CustomDialog extends CommonDialog {
 
     @Override
     public CommonDialog setTitleSubText(String text) {
-        Text titleText = (Text) baseTitleLayout.findComponentById(ResourceTable.Id_subTitleText);
+        Text titleText = (Text) baseTitleLayout.findComponentById(ResourceTable.Id_base_sub_title_text);
         titleText.setText(text);
         titleText.setVisibility(Component.VISIBLE);
         this.setTitleCustomComponent((DirectionalLayout) baseTitleLayout);
@@ -121,7 +121,7 @@ public class CustomDialog extends CommonDialog {
 
     @Override
     public CommonDialog setContentText(String text) {
-        Text contentText = (Text) baseContentLayout.findComponentById(ResourceTable.Id_contentText);
+        Text contentText = (Text) baseContentLayout.findComponentById(ResourceTable.Id_base_content_text);
         contentText.setText(text);
         contentText.setVisibility(Component.VISIBLE);
         this.setContentCustomComponent(baseContentLayout);
@@ -130,7 +130,7 @@ public class CustomDialog extends CommonDialog {
 
     @Override
     public CommonDialog setContentImage(int resId) {
-        Image image = (Image) baseContentLayout.findComponentById(ResourceTable.Id_imgContent);
+        Image image = (Image) baseContentLayout.findComponentById(ResourceTable.Id_base_content_image);
         image.setPixelMap(resId);
         image.setVisibility(Component.VISIBLE);
         this.setContentCustomComponent(baseContentLayout);
@@ -166,13 +166,13 @@ public class CustomDialog extends CommonDialog {
         Button button;
         switch (buttonNum) {
             case 0 :
-                button = (Button) baseButtonLayout.findComponentById(ResourceTable.Id_bb0);
+                button = (Button) baseButtonLayout.findComponentById(ResourceTable.Id_base_button_0);
                 break;
             case 1 :
-                button = (Button) baseButtonLayout.findComponentById(ResourceTable.Id_bb1);
+                button = (Button) baseButtonLayout.findComponentById(ResourceTable.Id_base_button_1);
                 break;
             case 2:
-                button = (Button) baseButtonLayout.findComponentById(ResourceTable.Id_bb2);
+                button = (Button) baseButtonLayout.findComponentById(ResourceTable.Id_base_button_2);
                 break;
             default :
                 return this;
@@ -217,13 +217,13 @@ public class CustomDialog extends CommonDialog {
         Image image;
         switch (buttonNum) {
             case 0 :
-                image = (Image) baseImageButtonLayout.findComponentById(ResourceTable.Id_imgb0);
+                image = (Image) baseImageButtonLayout.findComponentById(ResourceTable.Id_base_image_button_0);
                 break;
             case 1 :
-                image = (Image) baseImageButtonLayout.findComponentById(ResourceTable.Id_imgb1);
+                image = (Image) baseImageButtonLayout.findComponentById(ResourceTable.Id_base_image_button_1);
                 break;
             case 2 :
-                image = (Image) baseImageButtonLayout.findComponentById(ResourceTable.Id_imgb2);
+                image = (Image) baseImageButtonLayout.findComponentById(ResourceTable.Id_base_image_button_2);
                 break;
             default:
                 return this;

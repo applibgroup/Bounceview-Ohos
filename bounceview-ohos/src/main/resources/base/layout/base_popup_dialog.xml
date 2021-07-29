@@ -4,13 +4,13 @@
     ohos:height="match_content"
     ohos:width="match_content"
     ohos:orientation="vertical"
-    ohos:id="$+id:temp_Layout">
+    ohos:id="$+id:base_popup_layout">
 
     <Text
         ohos:height="match_content"
         ohos:width="match_content"
         ohos:text_size="30fp"
-        ohos:id="$+id:temp_text"
+        ohos:id="$+id:base_text"
         />
 
 </DirectionalLayout>

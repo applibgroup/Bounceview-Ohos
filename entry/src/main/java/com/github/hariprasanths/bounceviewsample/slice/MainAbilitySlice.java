@@ -48,7 +48,7 @@ public class MainAbilitySlice extends AbilitySlice  {
     private TabList tabList;
     private PageFlipper pageFlipper;
     private static final String TAG = "MainAbilitySlice";
-    private final HiLogLabel label = new HiLogLabel(HiLog.ERROR, 0, TAG);
+    private static final HiLogLabel LABEL = new HiLogLabel(HiLog.ERROR, 0, TAG);
 
     @Override
     public void onStart(Intent intent) {
@@ -116,15 +116,15 @@ public class MainAbilitySlice extends AbilitySlice  {
     private void addAlertDialog(DirectionalLayout dialog) {
         Button alert = (Button) dialog.findComponentById(ResourceTable.Id_alert_dialog_button);
         alert.setClickedListener(component -> {
-            CustomDialog commonDialog = new CustomDialog(getContext());
-            commonDialog.setTitleText("Alert Dialog");
-            commonDialog.setContentText("Do you want to exit?");
-            commonDialog.setCommonButton(0, "No", 100, 0, component12 -> commonDialog.destroy());
-            commonDialog.setCommonButton(1, "Yes", 100, 0, component1 -> terminateAbility());
-            commonDialog.setSize(400, 300);
-            commonDialog.setAutoClosable(true);
-            commonDialog.show();
-            BounceView.addAnimTo(commonDialog);
+            CustomDialog alertDialog = new CustomDialog(getContext());
+            alertDialog.setTitleText("Alert Dialog");
+            alertDialog.setContentText("Do you want to exit?");
+            alertDialog.setCommonButton(0, "No", 100, 0, component12 -> alertDialog.destroy());
+            alertDialog.setCommonButton(1, "Yes", 100, 0, component1 -> terminateAbility());
+            alertDialog.setSize(400, 300);
+            alertDialog.setAutoClosable(true);
+            alertDialog.show();
+            BounceView.addAnimTo(alertDialog);
         });
     }
 
@@ -210,8 +210,7 @@ public class MainAbilitySlice extends AbilitySlice  {
             tab1.setIconElement(pixelMapElement);
             tab1.setPadding(20, 0, 5, 5);
         } catch (NotExistException | IOException e) {
-            e.printStackTrace();
-            HiLog.error(label, "%s", e.getMessage());
+            HiLog.error(LABEL, "NotExistException or IOException exception occurred");
         }
         tab1.setText("Tab1");
         tabList.addTab(tab1);
@@ -225,8 +224,7 @@ public class MainAbilitySlice extends AbilitySlice  {
             tab2.setIconElement(pixelMapElement);
             tab2.setPadding(20, 0, 20, 5);
         } catch (NotExistException | IOException e) {
-            e.printStackTrace();
-            HiLog.error(label, "%s", e.getMessage());
+            HiLog.error(LABEL, "NotExistException or IOException exception occurred");
         }
         tab2.setText("Tab2");
         tabList.addTab(tab2);
@@ -240,8 +238,7 @@ public class MainAbilitySlice extends AbilitySlice  {
             tab3.setIconElement(pixelMapElement);
             tab3.setPadding(20, 0, 20, 5);
         } catch (NotExistException | IOException e) {
-            e.printStackTrace();
-            HiLog.error(label, "%s", e.getMessage());
+            HiLog.error(LABEL, "NotExistException or IOException exception occurred");
         }
         tab3.setText("Tab3");
         tabList.addTab(tab3);

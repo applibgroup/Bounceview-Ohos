@@ -241,12 +241,12 @@ public class BounceView implements BounceViewAnim {
 
             @Override
             public void onPause(Animator animator) {
-                //
+                // not required
             }
 
             @Override
             public void onResume(Animator animator) {
-                //
+                // not required
             }
         });
         animatorProperty.start();

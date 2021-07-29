@@ -1,60 +1,72 @@
-# Bounceview-Android
+# Bounceview-Ohos
+It's an HarmonyOS library that provides customizable bounce animation for any view update
 
-Customizable bounce animation for any view updation
+## Source
+Inspired by https://github.com/hariprasanths/Bounceview-Android Version v0.2.0
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Bounceview--Android-green.svg?style=flat)](https://android-arsenal.com/details/1/7148)
+## Screenshot
 
-<div>
-  <img src="http://res.cloudinary.com/ezio/image/upload/v1528468184/2.gif" alt="sample screenshot"/>
-</div>
-
-# Getting Started
+## Getting Started
 <h4>In your build.gradle</h4>
 
-Maven Central
+## Installation Instructions
+1.For using Bounceview-Ohos module in sample app, include the source code and add the below dependencies in entry/build.gradle to generate hap/support.har.
 ```groovy
-dependencies {
-    implementation 'io.github.hariprasanths:bounceview-android:0.2.0'
-}
+	dependencies {
+		implementation project(path: ':bounceview-ohos')
+        implementation fileTree(dir: 'libs', include: ['*.har'])
+        testImplementation 'junit:junit:4.13'
+	}
 ```
-
-jcenter
+2.For using Bounceview-Ohos in separate application using har file, add the har file in the entry/libs folder and add the dependencies in entry/build.gradle file.
 ```groovy
-dependencies {
-    implementation 'hari.bounceview:bounceview:0.2.0'
-}
+	dependencies {
+		implementation fileTree(dir: 'libs', include: ['*.har'])
+		testImplementation 'junit:junit:4.13'
+	}
 ```
-
-<h4>Usage</h4>
+## Usage
 
 <h5>Add animations to any views like so:</h5>
 
 ```java
-Button button = view.findViewById(R.id.button);
+Button button = (Button) findComponentById(ResourceTable.Id_button);
 BounceView.addAnimTo(button);
 ```
 
-<h5>Use BounceView with dialogs:</h5>
+### Use BounceView with dialogs:
 
 ```java
-CustomDialog customDialog = new CustomDialog(getActivity());
-//Add animation to custom dialog
-BounceView.addAnimTo(customDialog);        //Call before showing the dialog
-customDialog.show();
+CustomDialog commonDialog = new CustomDialog(getContext());
+DirectionalLayout customDialog = (DirectionalLayout) LayoutScatter.getInstance(getContext())
+        .parse(ResourceTable.Layout_custom_dialog, null, false);
+commonDialog.setContentCustomComponent(customDialog);
+commonDialog.setAutoClosable(true);
+commonDialog.show();
+BounceView.addAnimTo(commonDialog);
 
-PopupWindow popupWindow;
+PopupDialog
 ...
-//Add animation to popup window
-BounceView.addAnimTo(popupWindow);        //Call before showing the popup
-popupWindow.showAtLocation(parentView, Gravity.CENTER, 0, 0);
+DirectionalLayout customDialogLayout = (DirectionalLayout) LayoutScatter.getInstance(getContext())
+                    .parse(ResourceTable.Layout_custom_popup, null, false);
+CustomPopupDialog popupDialog = new CustomPopupDialog(getContext(), null);
+popupDialog.setCustomComponent(customDialogLayout);
+popupDialog.setAutoClosable(true);
+popupDialog.show();
+BounceView.addAnimTo(popupDialog);
 
-AlertDialog dialog = builder.create();
-//Add animation to alert dialog
-BounceView.addAnimTo(dialog);        //Call before showing the dialog
-dialog.show();
+CustomDialog alertDialog = new CustomDialog(getContext());
+alertDialog.setTitleText("Alert Dialog");
+alertDialog.setContentText("Do you want to exit?");
+alertDialog.setCommonButton(0, "No", 100, 0, component12 -> alertDialog.destroy());
+alertDialog.setCommonButton(1, "Yes", 100, 0, component1 -> terminateAbility());
+alertDialog.setSize(400, 300);
+alertDialog.setAutoClosable(true);
+alertDialog.show();
+BounceView.addAnimTo(alertDialog);
 ```
 
-<h5>Some cool animations:</h5>
+### Some cool animations:
 
 ```java
 //Bounce animation
@@ -74,10 +86,10 @@ BounceView.addAnimTo(button4)
         .setScaleForPopOutAnim(0f, 0f);
 ```
 
-<h5>Customize BounceView properties:</h5>
+## Customize BounceView properties:
 
 ```java
-Button button = view.findViewById(R.id.button);
+Button button = (Button) findComponentById(ResourceTable.Id_button);
 BounceView.addAnimTo(button)
         //Default push in scalex: 0.9f , scaley: 0.9f
         .setScaleForPushInAnim(BounceView.PUSH_IN_SCALE_X, BounceView.PUSH_IN_SCALE_Y)
@@ -87,13 +99,10 @@ BounceView.addAnimTo(button)
         .setPushInAnimDuration(BounceView.PUSH_IN_ANIM_DURATION)
         //Default pop out anim duration: 100 (in milliseconds)
         .setPopOutAnimDuration(BounceView.POP_OUT_ANIM_DURATION)
-        //Default interpolator: AccelerateDecelerateInterpolator()
+        //Default interpolator: Animator.CurveType.ACCELERATE_DECELERATE
         .setInterpolatorPushIn(BounceView.DEFAULT_INTERPOLATOR)
         .setInterpolatorPopOut(BounceView.DEFAULT_INTERPOLATOR);
 ```
-
-## Credits
-Inspired by and thanks to [TheKhaeng's Push Down Animation Click](https://github.com/TheKhaeng/pushdown-anim-click)
 
 ## Show your support
 
