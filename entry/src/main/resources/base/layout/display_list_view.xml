@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <ListContainer
-        xmlns:ohos="http://schemas.huawei.com/res/ohos"
-        ohos:height="match_parent"
-        ohos:width="match_parent"
-        ohos:id="$+id:listContainer"
-        ohos:start_margin="100"
-        ohos:end_margin="100"/>
+<ListContainer
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:id="$+id:listContainer"
+    ohos:start_margin="100"
+    ohos:end_margin="100"/>

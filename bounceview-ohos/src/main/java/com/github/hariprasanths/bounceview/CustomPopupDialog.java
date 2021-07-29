@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2020-21 Application Library Engineering Group
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.github.hariprasanths.bounceview;
 
 import ohos.agp.colors.RgbColor;
@@ -15,9 +31,9 @@ import ohos.app.Context;
  * Custom Popup Dialog.
  */
 public class CustomPopupDialog extends PopupDialog {
-    Component mComponent = null;
-    Component mTempComponent = null;
-    DirectionalLayout customLayout;
+    Component mCustomComponent = null;
+    Component mBaseComponent = null;
+    DirectionalLayout basePopupLayout;
 
     /**
      * Constructor to create Custom Popup dialog.
@@ -27,9 +43,8 @@ public class CustomPopupDialog extends PopupDialog {
      */
     public CustomPopupDialog(Context context, Component contentComponent) {
         super(context, contentComponent);
-        mComponent = contentComponent;
-        customLayout = (DirectionalLayout) LayoutScatter.getInstance(context)
-                .parse(ResourceTable.Layout_temp_popup, null, false);
+        basePopupLayout = (DirectionalLayout) LayoutScatter.getInstance(context)
+                .parse(ResourceTable.Layout_base_popup_dialog, null, false);
     }
 
     public CustomPopupDialog(Context context, Component contentComponent, int width, int height) {
@@ -37,7 +52,7 @@ public class CustomPopupDialog extends PopupDialog {
     }
 
     public Component getCustomComponent() {
-        return mComponent;
+        return mCustomComponent;
     }
 
     /**
@@ -47,36 +62,48 @@ public class CustomPopupDialog extends PopupDialog {
      * @return component set by setText, setBackColor
      */
     public Component getBaseComponent() {
-        return mTempComponent;
+        return mBaseComponent;
     }
 
     @Override
     public CustomPopupDialog setCustomComponent(Component component) {
         super.setCustomComponent(component);
-        this.mComponent = component;
+        this.mCustomComponent = component;
         return this;
     }
 
+    /**
+     * text will be set only to the baseLayout(not to to customLayout )similar to platform's PopupDialog behaviour.
+     *
+     * @param text to set
+     * @return base component where text field set to given parameter
+     */
     @Override
     public PopupDialog setText(String text) {
-        Text contentText = (Text) customLayout.findComponentById(ResourceTable.Id_temp_text);
+        Text contentText = (Text) basePopupLayout.findComponentById(ResourceTable.Id_temp_text);
         contentText.setText(text);
-        mTempComponent = customLayout;
+        mBaseComponent = basePopupLayout;
         return this;
     }
 
+    /**
+     * background color will be set only to the baseLayout(not to to customLayout)
+     * similar to platform's PopupDialog behaviour.
+     *
+     * @param color that need to be set as background of base Layout
+     */
     @Override
     public void setBackColor(Color color) {
         DirectionalLayout directionalLayout =
-                (DirectionalLayout) customLayout.findComponentById(ResourceTable.Id_temp_Layout);
+                (DirectionalLayout) basePopupLayout.findComponentById(ResourceTable.Id_temp_Layout);
         directionalLayout.setBackground(buildDrawableByColor(color.getValue()));
-        mTempComponent = customLayout;
+        mBaseComponent = basePopupLayout;
     }
 
     @Override
     public void show() {
-        if (mComponent == null) {
-            this.setCustomComponent(mTempComponent);
+        if (mCustomComponent == null) {
+            this.setCustomComponent(mBaseComponent);
         }
         super.show();
     }

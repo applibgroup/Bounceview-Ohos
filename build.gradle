@@ -44,7 +44,7 @@ allprojects {
         configFile file("config/checkstyle.xml")
 
         source 'entry/src/main/java'
-        source 'stripedprocessbutton/src/main/java'
+        source 'bounceview-ohos/src/main/java'
         include '**/*.java'
 
         // empty classpath
@@ -60,8 +60,8 @@ sonarqube {
         property "sonar.projectKey", "applibgroup_Bounceview-Ohos"
         property "sonar.organization", "applibgroup"
         property "sonar.host.url", "https://sonarcloud.io"
-        property "sonar.sources", "entry,bounceview"
-        property "sonar.java.binaries", "entry/build,bounceview/build"
+        property "sonar.sources", "entry,bounceview-ohos"
+        property "sonar.java.binaries", "entry/build,bounceview-ohos/build"
         property "sonar.java.checkstyle.reportPaths", "build/reports/checkstyle/checkstyle.xml"
     }
 }

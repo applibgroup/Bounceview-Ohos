@@ -6,6 +6,7 @@ import ohos.agp.animation.AnimatorProperty;
 import ohos.agp.animation.AnimatorValue;
 import ohos.agp.components.Component;
 import ohos.agp.components.TabList;
+import ohos.hiviewdfx.HiLogLabel;
 import ohos.multimodalinput.event.TouchEvent;
 import java.lang.ref.WeakReference;
 import java.util.Timer;
@@ -161,7 +162,7 @@ public class BounceView implements BounceViewAnim {
 
     private void setAnimToView() {
         if (mComponent != null) {
-            check(mComponent.get());
+            setListenerForTouchEvents(mComponent.get());
         }
     }
 
@@ -191,31 +192,43 @@ public class BounceView implements BounceViewAnim {
     private void setAnimToDialog() {
         if (mDialog.get() != null) {
             Component component = mDialog.get().getComponentContainer();
-            AnimatorProperty animatorProperty = component.createAnimatorProperty().setDuration(100)
-                    .scaleX(1.04f).scaleY(1.04f).scaleXFrom(1).scaleYFrom(1)
-                    .setCurveType(Animator.CurveType.ACCELERATE_DECELERATE);
-            animatorProperty.setStateChangedListener(new Animator.StateChangedListener() {
-                @Override
-                public void onStart(Animator animator) {
-                    //
-                }
+            setAnimatorProperty(component);
+        }
+    }
 
-                @Override
-                public void onStop(Animator animator) {
-                    //
-                }
+    private void setAnimToPopup() {
+        if (mPopup.get() != null) {
+            Component component = mPopup.get().getCustomComponent();
+            setAnimatorProperty(component);
+        }
+    }
 
-                @Override
-                public void onCancel(Animator animator) {
-                    //
-                }
+    private void setAnimatorProperty(Component component) {
+        AnimatorProperty animatorProperty = component.createAnimatorProperty().setDuration(100)
+                .scaleX(1.04f).scaleY(1.04f).scaleXFrom(1).scaleYFrom(1)
+                .setCurveType(Animator.CurveType.ACCELERATE_DECELERATE);
+        animatorProperty.setStateChangedListener(new Animator.StateChangedListener() {
+            @Override
+            public void onStart(Animator animator) {
+                // not required
+            }
 
-                @Override
-                public void onEnd(Animator animator) {
-                    new Timer().schedule(
-                         new TimerTask() {
+            @Override
+            public void onStop(Animator animator) {
+                // not required
+            }
+
+            @Override
+            public void onCancel(Animator animator) {
+                // not required
+            }
+
+            @Override
+            public void onEnd(Animator animator) {
+                new Timer().schedule(
+                        new TimerTask() {
                             @Override
-                             public void run() {
+                            public void run() {
                                 component.getContext().getUITaskDispatcher().asyncDispatch(() -> {
                                     AnimatorProperty animatorProperty1 = component.createAnimatorProperty()
                                             .scaleX(1).scaleY(1).scaleXFrom(1.04f).scaleYFrom(1.04f)
@@ -224,86 +237,32 @@ public class BounceView implements BounceViewAnim {
                                     animatorProperty1.start();
                                 });
                             }
-                            }, 100);
-                }
+                        }, 100);
+            }
 
-                @Override
-                public void onPause(Animator animator) {
-                    //
-                }
+            @Override
+            public void onPause(Animator animator) {
+                //
+            }
 
-                @Override
-                public void onResume(Animator animator) {
-                    //
-                }
-            });
-            animatorProperty.start();
-        }
-    }
-
-    private void setAnimToPopup() {
-        if (mPopup.get() != null) {
-            Component component = mPopup.get().getCustomComponent();
-            AnimatorProperty animatorProperty = component.createAnimatorProperty().setDuration(100)
-                    .scaleX(1.04f).scaleY(1.04f).scaleXFrom(1).scaleYFrom(1)
-                    .setCurveType(Animator.CurveType.ACCELERATE_DECELERATE);
-            animatorProperty.setStateChangedListener(new Animator.StateChangedListener() {
-                @Override
-                public void onStart(Animator animator) {
-                    //
-                }
-
-                @Override
-                public void onStop(Animator animator) {
-                    //
-                }
-
-                @Override
-                public void onCancel(Animator animator) {
-                    //
-                }
-
-                @Override
-                public void onEnd(Animator animator) {
-                    new Timer().schedule(
-                            new TimerTask() {
-                                @Override
-                                public void run() {
-                                    component.getContext().getUITaskDispatcher()
-                                            .asyncDispatch(() -> component.createAnimatorProperty()
-                                            .scaleX(1).scaleY(1).scaleXFrom(1.04f).scaleYFrom(1.04f)
-                                            .setDuration(100).setCurveType(Animator.CurveType.ACCELERATE_DECELERATE)
-                                            .start());
-                                }
-                            }, 100);
-                }
-
-                @Override
-                public void onPause(Animator animator) {
-                    //
-                }
-
-                @Override
-                public void onResume(Animator animator) {
-                    //
-                }
-            });
-            animatorProperty.start();
-            mPopup.get().setCustomComponent(component);
-            animatorProperty.start();
-        }
+            @Override
+            public void onResume(Animator animator) {
+                //
+            }
+        });
+        animatorProperty.start();
     }
 
     private void setAnimToTabList() {
         if (mTabList.get() != null) {
             for (int i = 0; i < mTabList.get().getTabCount(); i++) {
                 final TabList.Tab tab = mTabList.get().getTabAt(i);
-                check(tab);
+                setListenerForTouchEvents(tab);
             }
         }
     }
 
-    private void check(Component component1) {
+    private void setListenerForTouchEvents(Component component1) {
         component1.setTouchEventListener((component, motionEvent) -> {
             int action = motionEvent.getAction();
             if (action == TouchEvent.PRIMARY_POINT_DOWN) {
@@ -322,13 +281,13 @@ public class BounceView implements BounceViewAnim {
                     return false;
                 }
             } else {
-                return checkActions(action, component, motionEvent);
+                return setTouchEventActionsInternal(action, component, motionEvent);
             }
             return false;
         });
     }
 
-    private boolean checkActions(int action, Component component, TouchEvent motionEvent) {
+    private boolean setTouchEventActionsInternal(int action, Component component, TouchEvent motionEvent) {
         if (action == TouchEvent.CANCEL) {
             if (isTouchInsideView) {
                 component.createAnimatorProperty().cancel();

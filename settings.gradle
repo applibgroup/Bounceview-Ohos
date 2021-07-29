@@ -1,1 +1,1 @@
-include ':entry', ':bounceview'
+include ':entry', ':bounceview-ohos'

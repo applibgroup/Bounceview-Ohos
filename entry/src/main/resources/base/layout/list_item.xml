@@ -12,13 +12,7 @@
     ohos:background_element="$graphic:button_background"
     ohos:orientation="vertical"
     >
-        <!--<DependentLayout
-            ohos:top_margin="20fp"
-            ohos:id="$+id:listlayout"
-            ohos:width="200fp"
-            ohos:height="60fp"
-            ohos:background_element="$graphic:button_background"
-            >-->
+
         <Text
             ohos:top_margin="20fp"
             ohos:bottom_margin="20fp"
@@ -28,8 +22,7 @@
             ohos:alignment="center"
             ohos:align_parent_bottom="true"
             ohos:text_size="30fp"
-            ohos:text="HELLO WORLD!"
+            ohos:text=""
             ohos:layout_alignment="center"
             ohos:text_alignment="center"/>
-  <!--      </DependentLayout>-->
 </DirectionalLayout>

@@ -12,7 +12,7 @@
     <Text
         ohos:height="match_content"
         ohos:width="match_parent"
-        ohos:text="Custom Dialog"
+        ohos:text="$string:CustomDialog"
         ohos:text_size="18fp"
         ohos:text_alignment="center"
         ohos:text_color="#ffffff"
@@ -34,8 +34,8 @@
                 ohos:id="$+id:txt_dia"
                 ohos:width="match_content"
                 ohos:layout_alignment="center"
-                ohos:margin="10px"
-                ohos:text="Do you realy want to exit ?"
+                ohos:margin="5fp"
+                ohos:text="$string:dialog_message"
                 ohos:text_alignment="center"
                 ohos:text_size="15fp"
                 ohos:top_padding="45px"
@@ -44,10 +44,10 @@
                 <DirectionalLayout
                     ohos:height="match_content"
                     ohos:width="match_content"
-                    ohos:bottom_padding="20px"
+                    ohos:bottom_padding="8fp"
                     ohos:layout_alignment="bottom"
                     ohos:orientation="horizontal"
-                    ohos:top_margin="30px"
+                    ohos:top_margin="10fp"
                     ohos:alignment="center"
                     ohos:center_in_parent="true">
 
@@ -58,11 +58,10 @@
                         ohos:width="70fp"
                         ohos:background_element="#d21e1e"
                         ohos:clickable="true"
-                        ohos:text="Cancel"
+                        ohos:text="$string:Cancel"
                         ohos:text_color="#ffffff"
                         ohos:element_left="$id:btn_yes"
-                        ohos:left_margin="40fp"
-                        ohos:center_in_parent="true"
+                        ohos:left_margin="90fp"
                         />
 
                     <Button
@@ -70,11 +69,11 @@
                         ohos:height="30fp"
                         ohos:width="70fp"
                         ohos:background_element="#00bcff"
-                        ohos:text="Yes"
+                        ohos:text="$string:yes"
                         ohos:text_color="#ffffff"
                         ohos:clickable="true"
                         ohos:id="$+id:btn_yes"
-                        ohos:left_margin="30fp"
+                        ohos:left_margin="40fp"
                         ohos:center_in_parent="true"/>
 
                 </DirectionalLayout>

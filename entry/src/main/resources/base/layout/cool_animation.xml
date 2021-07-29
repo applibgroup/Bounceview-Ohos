@@ -4,7 +4,14 @@
     ohos:height="match_parent"
     ohos:width="match_parent"
     ohos:orientation="vertical">
-
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:top_margin="20fp"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="$string:coolAnim"
+        ohos:text_size="30fp"
+        />
     <Button
         ohos:id="$+id:bounce"
         ohos:height="50fp"

@@ -18,17 +18,16 @@ package com.github.hariprasanths.bounceviewsample.slice;
 
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
-import ohos.agp.components.Button;
-import ohos.agp.components.DirectionalLayout;
-import ohos.agp.components.LayoutScatter;
-import ohos.agp.components.ListContainer;
-import ohos.agp.components.PageFlipper;
-import ohos.agp.components.TabList;
+import ohos.agp.components.*;
 import ohos.agp.components.element.PixelMapElement;
 import ohos.agp.utils.Color;
 import ohos.agp.utils.TextAlignment;
+import ohos.agp.window.dialog.CommonDialog;
+import ohos.agp.window.dialog.PopupDialog;
 import ohos.agp.window.service.DisplayManager;
 import ohos.global.resource.NotExistException;
+import ohos.hiviewdfx.HiLog;
+import ohos.hiviewdfx.HiLogLabel;
 import ohos.media.image.PixelMap;
 import com.github.hariprasanths.bounceview.BounceView;
 import com.github.hariprasanths.bounceview.CustomDialog;
@@ -45,6 +44,8 @@ import java.util.List;
 public class MainAbilitySlice extends AbilitySlice  {
     private TabList tabList;
     private PageFlipper pageFlipper;
+    private static final String TAG = "MainAbilitySlice";
+    private final HiLogLabel label = new HiLogLabel(HiLog.ERROR, 0, TAG);
 
     @Override
     public void onStart(Intent intent) {
@@ -61,10 +62,10 @@ public class MainAbilitySlice extends AbilitySlice  {
 
     private void addDialogAnimPage() {
         DirectionalLayout dialog  = (DirectionalLayout) LayoutScatter.getInstance(this)
-                .parse(ResourceTable.Layout_ability_main, null, false);
-        Button alert = (Button) dialog.findComponentById(ResourceTable.Id_button1);
-        Button custom = (Button) dialog.findComponentById(ResourceTable.Id_button2);
-        Button popUp = (Button) dialog.findComponentById(ResourceTable.Id_button3);
+                .parse(ResourceTable.Layout_dialog_page, null, false);
+        Button alert = (Button) dialog.findComponentById(ResourceTable.Id_alert_dialog_button);
+        Button custom = (Button) dialog.findComponentById(ResourceTable.Id_custom_dialog_button);
+        Button popUp = (Button) dialog.findComponentById(ResourceTable.Id_popup_dialog_button);
         BounceView.addAnimTo(alert);
         BounceView.addAnimTo(custom);
         BounceView.addAnimTo(popUp);
@@ -75,21 +76,21 @@ public class MainAbilitySlice extends AbilitySlice  {
     }
 
     private void addPopupDialog(DirectionalLayout dialog) {
-        Button popUp = (Button) dialog.findComponentById(ResourceTable.Id_button3);
+        Button popUp = (Button) dialog.findComponentById(ResourceTable.Id_popup_dialog_button);
         popUp.setClickedListener(component -> {
             DirectionalLayout dialogLayout = (DirectionalLayout) LayoutScatter.getInstance(getContext())
                     .parse(ResourceTable.Layout_custom_popup, null, false);
             CustomPopupDialog popupDialog = new CustomPopupDialog(getContext(), null);
             popupDialog.setCustomComponent(dialogLayout);
             popupDialog.setAutoClosable(true);
-            popupDialog.setAlignment(72);
+            popupDialog.setAlignment(TextAlignment.CENTER);
             popupDialog.show();
             BounceView.addAnimTo(popupDialog);
         });
     }
 
     private void addCustomDialog(DirectionalLayout dialog) {
-        Button custom = (Button) dialog.findComponentById(ResourceTable.Id_button2);
+        Button custom = (Button) dialog.findComponentById(ResourceTable.Id_custom_dialog_button);
         custom.setClickedListener(component -> {
             CustomDialog commonDialog = new CustomDialog(getContext());
             DirectionalLayout customDialog = (DirectionalLayout) LayoutScatter.getInstance(getContext())
@@ -110,7 +111,7 @@ public class MainAbilitySlice extends AbilitySlice  {
     }
 
     private void addAlertDialog(DirectionalLayout dialog) {
-        Button alert = (Button) dialog.findComponentById(ResourceTable.Id_button1);
+        Button alert = (Button) dialog.findComponentById(ResourceTable.Id_alert_dialog_button);
         alert.setClickedListener(component -> {
             CustomDialog commonDialog = new CustomDialog(getContext());
             commonDialog.setTitleText("Alert Dialog");
@@ -152,10 +153,10 @@ public class MainAbilitySlice extends AbilitySlice  {
 
     private void addListContainerPage() {
         List<String> list = new ArrayList<>();
-        list.add("Item 1");
-        list.add("Item 2");
-        list.add("Item 3");
-        list.add("Item 4");
+        list.add("List Item 1");
+        list.add("List Item 2");
+        list.add("List Item 3");
+        list.add("List Item 4");
         ListItemProvider listItemProvider = new ListItemProvider(this);
         listItemProvider.setItemCount(4);
         listItemProvider.setList(list);
@@ -206,7 +207,8 @@ public class MainAbilitySlice extends AbilitySlice  {
             tab1.setIconElement(pixelMapElement);
             tab1.setPadding(20, 0, 5, 5);
         } catch (NotExistException | IOException e) {
-            // exception
+            e.printStackTrace();
+            HiLog.error(label, "%s", e.getMessage());
         }
         tab1.setText("Tab1");
         tabList.addTab(tab1);
@@ -220,7 +222,8 @@ public class MainAbilitySlice extends AbilitySlice  {
             tab2.setIconElement(pixelMapElement);
             tab2.setPadding(20, 0, 20, 5);
         } catch (NotExistException | IOException e) {
-            // exception
+            e.printStackTrace();
+            HiLog.error(label, "%s", e.getMessage());
         }
         tab2.setText("Tab2");
         tabList.addTab(tab2);
@@ -234,7 +237,8 @@ public class MainAbilitySlice extends AbilitySlice  {
             tab3.setIconElement(pixelMapElement);
             tab3.setPadding(20, 0, 20, 5);
         } catch (NotExistException | IOException e) {
-            // exception
+            e.printStackTrace();
+            HiLog.error(label, "%s", e.getMessage());
         }
         tab3.setText("Tab3");
         tabList.addTab(tab3);

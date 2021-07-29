@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2020-21 Application Library Engineering Group
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.github.hariprasanths.bounceview;
 
 import ohos.agp.components.Button;
@@ -14,7 +30,7 @@ import ohos.app.Context;
  * Custom Common Dialog.
  */
 public class CustomDialog extends CommonDialog {
-    Component baseCustomLayout;
+    Component baseDialogLayout;
     Component baseTitleLayout;
     Component baseContentLayout;
     Component baseButtonLayout;
@@ -33,21 +49,21 @@ public class CustomDialog extends CommonDialog {
     public CustomDialog(Context context) {
         super(context);
         this.context = context;
-        baseCustomLayout = LayoutScatter.getInstance(context)
-                .parse(ResourceTable.Layout_custom_common_dialog, null, false);
+        baseDialogLayout = LayoutScatter.getInstance(context)
+                .parse(ResourceTable.Layout_base_common_dialog, null, false);
         DirectionalLayout.LayoutConfig layoutConfig = new DirectionalLayout.LayoutConfig(
                 ComponentContainer.LayoutConfig.MATCH_CONTENT, ComponentContainer.LayoutConfig.MATCH_CONTENT);
-        baseCustomLayout.setLayoutConfig(layoutConfig);
+        baseDialogLayout.setLayoutConfig(layoutConfig);
         baseTitleLayout = LayoutScatter.getInstance(context)
-                .parse(ResourceTable.Layout_title, null, false);
+                .parse(ResourceTable.Layout_base_title, null, false);
         baseTitleLayout.setLayoutConfig(layoutConfig);
         baseContentLayout = LayoutScatter.getInstance(context)
-                .parse(ResourceTable.Layout_content, null, false);
+                .parse(ResourceTable.Layout_base_content, null, false);
         baseContentLayout.setLayoutConfig(layoutConfig);
         baseButtonLayout = LayoutScatter.getInstance(context)
-                .parse(ResourceTable.Layout_buttons, null, false);
+                .parse(ResourceTable.Layout_base_buttons, null, false);
         baseImageButtonLayout = LayoutScatter.getInstance(context)
-                .parse(ResourceTable.Layout_image_buttons, null, false);
+                .parse(ResourceTable.Layout_base_image_buttons, null, false);
         baseButtonLayout.setLayoutConfig(layoutConfig);
     }
 
@@ -89,7 +105,7 @@ public class CustomDialog extends CommonDialog {
     public CommonDialog setTitleText(String text) {
         Text titleText = (Text) baseTitleLayout.findComponentById(ResourceTable.Id_titleText);
         titleText.setText(text);
-        titleText.setVisibility(0);
+        titleText.setVisibility(Component.VISIBLE);
         this.setTitleCustomComponent((DirectionalLayout) baseTitleLayout);
         return this;
     }
@@ -107,7 +123,7 @@ public class CustomDialog extends CommonDialog {
     public CommonDialog setContentText(String text) {
         Text contentText = (Text) baseContentLayout.findComponentById(ResourceTable.Id_contentText);
         contentText.setText(text);
-        contentText.setVisibility(0);
+        contentText.setVisibility(Component.VISIBLE);
         this.setContentCustomComponent(baseContentLayout);
         return this;
     }
@@ -116,19 +132,17 @@ public class CustomDialog extends CommonDialog {
     public CommonDialog setContentImage(int resId) {
         Image image = (Image) baseContentLayout.findComponentById(ResourceTable.Id_imgContent);
         image.setPixelMap(resId);
-        image.setVisibility(0);
+        image.setVisibility(Component.VISIBLE);
         this.setContentCustomComponent(baseContentLayout);
         return this;
     }
 
     /**
-     * Does some thing in old style.
-     * use {@link
-     * #setCommonButton(int buttonNum,
-     * String text, int leftMargin, int rightMargin,
-     * Component.ClickedListener listener)} ()}
-     * instead.
+     * This method is deprecated.
+     *
+     * @deprecated use {@link #setCommonButton(int, String, int, int, Component.ClickedListener)} ()} instead.
      */
+    @Deprecated
     @Override
     public CommonDialog setButton(int buttonNum, String text, ClickedListener listener)
             throws UnsupportedOperationException {
@@ -163,7 +177,7 @@ public class CustomDialog extends CommonDialog {
             default :
                 return this;
         }
-        button.setVisibility(0);
+        button.setVisibility(Component.VISIBLE);
         button.setText(text);
         button.setMarginsLeftAndRight(leftMargin, rightMargin);
         button.setClickedListener(listener);
@@ -172,13 +186,15 @@ public class CustomDialog extends CommonDialog {
     }
 
     /**
-     * Does some thing in old style.
-     * use {@link #setCommonImageButton(int, int, int, int, Component.ClickedListener)} instead.
+     * This method is deprecated.
+     *
+     * @deprecated use {@link #setCommonImageButton(int, int, int, int, Component.ClickedListener)} instead.
      */
+    @Deprecated
     @Override
     public CommonDialog setImageButton(int buttonNum, int resId, ClickedListener listener)
             throws UnsupportedOperationException {
-        String message = "setButton is unsupported, use setCommonImageButton(int buttonNum, int resId, int leftMargin,"
+        String message = "setImageButton is unsupported, use setCommonImageButton(int buttonNum, int resId, int leftMargin,"
                 + " int rightMargin, Component.ClickedListener listener) instead.";
         throw new UnsupportedOperationException(message);
     }
@@ -212,7 +228,7 @@ public class CustomDialog extends CommonDialog {
             default:
                 return this;
         }
-        image.setVisibility(0);
+        image.setVisibility(Component.VISIBLE);
         image.setMarginsLeftAndRight(leftMargin, rightMargin);
         image.setPixelMap(resId);
         image.setClickedListener(listener);
@@ -223,19 +239,17 @@ public class CustomDialog extends CommonDialog {
     @Override
     public void show() {
         DirectionalLayout componentContainer = new DirectionalLayout(context);
-        int k = 0;
+        int index = 0;
         if (mTitleComponent != null) {
-            componentContainer.addComponent(mTitleComponent, k);
-            k++;
+            componentContainer.addComponent(mTitleComponent, index++);
         }
         if (mContentComponent != null) {
-            componentContainer.addComponent(mContentComponent, k);
-            k++;
+            componentContainer.addComponent(mContentComponent, index++);
         }
         if (mButtonComponent != null) {
-            componentContainer.addComponent(mButtonComponent, k);
+            componentContainer.addComponent(mButtonComponent, index);
         } else if (mImageButtonComponent != null) {
-            componentContainer.addComponent(mImageButtonComponent, k);
+            componentContainer.addComponent(mImageButtonComponent, index);
         }
         setComponentContainer(componentContainer);
         super.show();

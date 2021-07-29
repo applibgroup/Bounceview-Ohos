@@ -5,9 +5,16 @@
     ohos:width="match_parent"
     ohos:orientation="vertical"
     >
-
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:top_margin="20fp"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="$string:Dialogs"
+        ohos:text_size="30fp"
+        />
     <Button
-        ohos:id="$+id:button1"
+        ohos:id="$+id:alert_dialog_button"
         ohos:height="50fp"
         ohos:width="250fp"
         ohos:background_element="$graphic:button_background"
@@ -18,7 +25,7 @@
         ohos:text_size="50px"
         />
     <Button
-        ohos:id="$+id:button2"
+        ohos:id="$+id:custom_dialog_button"
         ohos:height="50fp"
         ohos:width="250fp"
         ohos:background_element="$graphic:button_background"
@@ -29,7 +36,7 @@
         ohos:text_size="50px"
         />
     <Button
-        ohos:id="$+id:button3"
+        ohos:id="$+id:popup_dialog_button"
         ohos:height="50fp"
         ohos:width="250fp"
         ohos:background_element="$graphic:button_background"
@@ -39,6 +46,4 @@
         ohos:top_margin="50fp"
         ohos:text_size="50px"
         />
-
-
 </DirectionalLayout>
