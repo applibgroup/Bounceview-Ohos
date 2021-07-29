@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <DirectionalLayout
+        xmlns:ohos="http://schemas.huawei.com/res/ohos"
+        ohos:height="400"
+        ohos:width="800"
+        ohos:orientation="vertical"
+        ohos:background_element="#5a7374"
+        ohos:alignment="center"
+        ohos:padding="10"
+        ohos:center_in_parent="true"
+    >
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:text="Custom Dialog"
+        ohos:text_size="18fp"
+        ohos:text_alignment="center"
+        ohos:text_color="#ffffff"
+        ohos:text_weight="700"
+        ohos:center_in_parent="true"/>
+
+        <DirectionalLayout
+            ohos:height="match_parent"
+            ohos:width="match_parent"
+            ohos:background_element="#bde9f4"
+            ohos:top_margin="10fp"
+            ohos:alignment="center"
+            ohos:left_margin="10fp"
+            ohos:bottom_margin="10fp"
+            ohos:right_margin="10fp"
+            ohos:center_in_parent="true">
+            <Text
+                ohos:height="match_content"
+                ohos:id="$+id:txt_dia"
+                ohos:width="match_content"
+                ohos:layout_alignment="center"
+                ohos:margin="10px"
+                ohos:text="Do you realy want to exit ?"
+                ohos:text_alignment="center"
+                ohos:text_size="15fp"
+                ohos:top_padding="45px"
+                ohos:text_weight="700"
+                ohos:center_in_parent="true"/>
+                <DirectionalLayout
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:bottom_padding="20px"
+                    ohos:layout_alignment="bottom"
+                    ohos:orientation="horizontal"
+                    ohos:top_margin="30px"
+                    ohos:alignment="center"
+                    ohos:center_in_parent="true">
+
+                    <Button
+                        ohos:id="$+id:btn_no"
+                        ohos:text_size="14fp"
+                        ohos:height="30fp"
+                        ohos:width="70fp"
+                        ohos:background_element="#d21e1e"
+                        ohos:clickable="true"
+                        ohos:text="Cancel"
+                        ohos:text_color="#ffffff"
+                        ohos:element_left="$id:btn_yes"
+                        ohos:left_margin="40fp"
+                        ohos:center_in_parent="true"
+                        />
+
+                    <Button
+                        ohos:text_size="14fp"
+                        ohos:height="30fp"
+                        ohos:width="70fp"
+                        ohos:background_element="#00bcff"
+                        ohos:text="Yes"
+                        ohos:text_color="#ffffff"
+                        ohos:clickable="true"
+                        ohos:id="$+id:btn_yes"
+                        ohos:left_margin="30fp"
+                        ohos:center_in_parent="true"/>
+
+                </DirectionalLayout>
+        </DirectionalLayout>
+</DirectionalLayout>

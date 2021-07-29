@@ -1,24 +1,10 @@
 *.iml
 .gradle
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
+.idea
 .DS_Store
 /build
 /captures
 .externalNativeBuild
-
-# IntelliJ IDEA
-.idea
-*.iml
-*.ipl
-*.iws
-classes/
-idea-classes/
-coverage-error.log
-
-# Android
-gen
-bin
-project.properties
-out
+/entry/.preview
+.cxx

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical"
+    >
+
+    <Button
+        ohos:id="$+id:button1"
+        ohos:height="50fp"
+        ohos:width="250fp"
+        ohos:background_element="$graphic:button_background"
+        ohos:text="$string:alert"
+        ohos:clickable="true"
+        ohos:layout_alignment="center"
+        ohos:top_margin="50fp"
+        ohos:text_size="50px"
+        />
+    <Button
+        ohos:id="$+id:button2"
+        ohos:height="50fp"
+        ohos:width="250fp"
+        ohos:background_element="$graphic:button_background"
+        ohos:text="$string:CustomDialog"
+        ohos:clickable="true"
+        ohos:layout_alignment="center"
+        ohos:top_margin="50fp"
+        ohos:text_size="50px"
+        />
+    <Button
+        ohos:id="$+id:button3"
+        ohos:height="50fp"
+        ohos:width="250fp"
+        ohos:background_element="$graphic:button_background"
+        ohos:text="$string:PopUpDialog"
+        ohos:clickable="true"
+        ohos:layout_alignment="center"
+        ohos:top_margin="50fp"
+        ohos:text_size="50px"
+        />
+
+
+</DirectionalLayout>

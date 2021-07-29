@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Set xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:fillAfter="true"
+    ohos:animator="@ohos:anim/animator">
+
+    <scale
+        ohos:duration="75"
+        ohos:fromXScale="1"
+        ohos:fromYScale="1"
+        ohos:toXScale="1.02"
+        ohos:toYScale="1.02"
+        ohos:pivotX="50%"
+        ohos:pivotY="50%"
+        ohos:fillAfter="true"/>
+
+    <scale
+        ohos:duration="75"
+        ohos:fromXScale="1.02"
+        ohos:fromYScale="1.02"
+        ohos:startOffset="75"
+        ohos:toXScale="0.9803"
+        ohos:toYScale="0.9803"
+        ohos:pivotX="50%"
+        ohos:pivotY="50%"/>
+</Set>

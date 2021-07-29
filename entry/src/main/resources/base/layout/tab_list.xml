@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+    <TabList
+        ohos:id="$+id:TabList"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:background_element="$graphic:tab_background"
+        />
+
+    <PageFlipper
+        ohos:id="$+id:PageFlipper"
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        />
+</DirectionalLayout>
