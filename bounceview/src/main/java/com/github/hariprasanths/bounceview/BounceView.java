@@ -161,55 +161,8 @@ public class BounceView implements BounceViewAnim {
 
     private void setAnimToView() {
         if (mComponent != null) {
-            mComponent.get().setTouchEventListener((component, motionEvent) -> {
-                int action = motionEvent.getAction();
-                if (action == TouchEvent.PRIMARY_POINT_DOWN) {
-                    isTouchInsideView = true;
-                    startAnimScale(component, pushInScaleX, pushInScaleY, pushInAnimDuration, pushInInterpolator, 0);
-                    return true;
-                } else if (action == TouchEvent.PRIMARY_POINT_UP) {
-                    if (isTouchInsideView) {
-                        component.createAnimatorProperty().cancel();
-                        startAnimScale(component, popOutScaleX, popOutScaleY,
-                                popOutAnimDuration, popOutInterpolator, 0);
-                        startAnimScale(component, 1f, 1f, popOutAnimDuration,
-                                popOutInterpolator, popOutAnimDuration + 1);
-                        return false;
-                    }
-                } else {
-                    return checkAction(action, component, motionEvent);
-                }
-                return false;
-            });
+            check(mComponent.get());
         }
-    }
-
-    private boolean checkAction(int action, Component component, TouchEvent motionEvent) {
-        if (action == TouchEvent.CANCEL) {
-            if (isTouchInsideView) {
-                component.createAnimatorProperty().cancel();
-                startAnimScale(component, 1f, 1f, popOutAnimDuration, DEFAULT_INTERPOLATOR, 0);
-            }
-            return true;
-        } else if (action == TouchEvent.POINT_MOVE && isTouchInsideView) {
-            int i = motionEvent.getIndex();
-            float currentX = motionEvent.getPointerScreenPosition(i).getX();
-            float currentY = motionEvent.getPointerScreenPosition(i).getY();
-            float currentPosX = currentX + component.getLeft();
-            float currentPosY = currentY + component.getTop();
-            float viewLeft = component.getLeft();
-            float viewTop = component.getTop();
-            float viewRight = component.getRight();
-            float viewBottom = component.getBottom();
-            if (!(currentPosX > viewLeft && currentPosX < viewRight
-                    && currentPosY > viewTop && currentPosY < viewBottom)) {
-                isTouchInsideView = false;
-                component.createAnimatorProperty().cancel();
-                startAnimScale(component, 1f, 1f, popOutAnimDuration, DEFAULT_INTERPOLATOR, 0);
-            }
-            return true;
-        }
-        return false;
     }
 
     private void startAnimScale(Component component, float scaleX, float scaleY,
@@ -260,18 +213,18 @@ public class BounceView implements BounceViewAnim {
                 @Override
                 public void onEnd(Animator animator) {
                     new Timer().schedule(
-                            new TimerTask() {
-                                @Override
-                                public void run() {
-                                    component.getContext().getUITaskDispatcher().asyncDispatch(() -> {
-                                        AnimatorProperty animatorProperty1 = component.createAnimatorProperty()
-                                                .scaleX(1).scaleY(1).scaleXFrom(1.04f).scaleYFrom(1.04f)
-                                                .setDuration(100)
-                                                .setCurveType(Animator.CurveType.ACCELERATE_DECELERATE);
-                                        animatorProperty1.start();
-                                    });
-                                }
-                            }, 200);
+                         new TimerTask() {
+                            @Override
+                             public void run() {
+                                component.getContext().getUITaskDispatcher().asyncDispatch(() -> {
+                                    AnimatorProperty animatorProperty1 = component.createAnimatorProperty()
+                                            .scaleX(1).scaleY(1).scaleXFrom(1.04f).scaleYFrom(1.04f)
+                                            .setDuration(100)
+                                            .setCurveType(Animator.CurveType.ACCELERATE_DECELERATE);
+                                    animatorProperty1.start();
+                                });
+                            }
+                            }, 100);
                 }
 
                 @Override
@@ -318,11 +271,11 @@ public class BounceView implements BounceViewAnim {
                                 public void run() {
                                     component.getContext().getUITaskDispatcher()
                                             .asyncDispatch(() -> component.createAnimatorProperty()
-                                                    .scaleX(1).scaleY(1).scaleXFrom(1.04f).scaleYFrom(1.04f)
-                                                    .setDuration(100).setCurveType(Animator.CurveType.ACCELERATE_DECELERATE)
-                                                    .start());
+                                            .scaleX(1).scaleY(1).scaleXFrom(1.04f).scaleYFrom(1.04f)
+                                            .setDuration(100).setCurveType(Animator.CurveType.ACCELERATE_DECELERATE)
+                                            .start());
                                 }
-                            }, 200);
+                            }, 100);
                 }
 
                 @Override
@@ -345,34 +298,37 @@ public class BounceView implements BounceViewAnim {
         if (mTabList.get() != null) {
             for (int i = 0; i < mTabList.get().getTabCount(); i++) {
                 final TabList.Tab tab = mTabList.get().getTabAt(i);
-                tab.setTouchEventListener((component, motionEvent) -> {
-                    int action = motionEvent.getAction();
-                    if (action == TouchEvent.PRIMARY_POINT_DOWN) {
-                        isTouchInsideView = true;
-                        startAnimScale(component, pushInScaleX, pushInScaleY,
-                                pushInAnimDuration, pushInInterpolator, 0);
-                        return true;
-
-                    } else if (action == TouchEvent.PRIMARY_POINT_UP) {
-                        if (isTouchInsideView) {
-                            component.createAnimatorProperty().cancel();
-                            startAnimScale(component, popOutScaleX, popOutScaleY, popOutAnimDuration,
-                                    popOutInterpolator, 0);
-                            startAnimScale(component, 1f, 1f, popOutAnimDuration,
-                                    popOutInterpolator, popOutAnimDuration + 1);
-                            tab.select();
-                            return false;
-                        }
-                    } else {
-                        return checkTabActions(action, component, motionEvent);
-                    }
-                    return false;
-                });
+                check(tab);
             }
         }
     }
 
-    private boolean checkTabActions(int action, Component component, TouchEvent motionEvent) {
+    private void check(Component component1) {
+        component1.setTouchEventListener((component, motionEvent) -> {
+            int action = motionEvent.getAction();
+            if (action == TouchEvent.PRIMARY_POINT_DOWN) {
+                isTouchInsideView = true;
+                startAnimScale(component, pushInScaleX, pushInScaleY,
+                        pushInAnimDuration, pushInInterpolator, 0);
+                return true;
+
+            } else if (action == TouchEvent.PRIMARY_POINT_UP) {
+                if (isTouchInsideView) {
+                    component.createAnimatorProperty().cancel();
+                    startAnimScale(component, popOutScaleX, popOutScaleY, popOutAnimDuration,
+                            popOutInterpolator, 0);
+                    startAnimScale(component, 1f, 1f, popOutAnimDuration,
+                            popOutInterpolator, popOutAnimDuration + 1);
+                    return false;
+                }
+            } else {
+                return checkActions(action, component, motionEvent);
+            }
+            return false;
+        });
+    }
+
+    private boolean checkActions(int action, Component component, TouchEvent motionEvent) {
         if (action == TouchEvent.CANCEL) {
             if (isTouchInsideView) {
                 component.createAnimatorProperty().cancel();
