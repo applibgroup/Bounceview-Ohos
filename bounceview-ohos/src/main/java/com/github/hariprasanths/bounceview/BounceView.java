@@ -6,7 +6,6 @@ import ohos.agp.animation.AnimatorProperty;
 import ohos.agp.animation.AnimatorValue;
 import ohos.agp.components.Component;
 import ohos.agp.components.TabList;
-import ohos.hiviewdfx.HiLogLabel;
 import ohos.multimodalinput.event.TouchEvent;
 import java.lang.ref.WeakReference;
 import java.util.Timer;

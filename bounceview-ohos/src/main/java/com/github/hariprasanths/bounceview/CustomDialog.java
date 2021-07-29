@@ -194,8 +194,8 @@ public class CustomDialog extends CommonDialog {
     @Override
     public CommonDialog setImageButton(int buttonNum, int resId, ClickedListener listener)
             throws UnsupportedOperationException {
-        String message = "setImageButton is unsupported, use setCommonImageButton(int buttonNum, int resId, int leftMargin,"
-                + " int rightMargin, Component.ClickedListener listener) instead.";
+        String message = "setImageButton is unsupported, use setCommonImageButton(int buttonNum, int resId,"
+                + " int leftMargin, int rightMargin, Component.ClickedListener listener) instead.";
         throw new UnsupportedOperationException(message);
     }
 

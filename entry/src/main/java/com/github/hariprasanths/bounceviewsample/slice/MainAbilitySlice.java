@@ -18,12 +18,15 @@ package com.github.hariprasanths.bounceviewsample.slice;
 
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
-import ohos.agp.components.*;
+import ohos.agp.components.Button;
+import ohos.agp.components.DirectionalLayout;
+import ohos.agp.components.LayoutScatter;
+import ohos.agp.components.ListContainer;
+import ohos.agp.components.PageFlipper;
+import ohos.agp.components.TabList;
 import ohos.agp.components.element.PixelMapElement;
 import ohos.agp.utils.Color;
 import ohos.agp.utils.TextAlignment;
-import ohos.agp.window.dialog.CommonDialog;
-import ohos.agp.window.dialog.PopupDialog;
 import ohos.agp.window.service.DisplayManager;
 import ohos.global.resource.NotExistException;
 import ohos.hiviewdfx.HiLog;
