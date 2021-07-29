@@ -49,6 +49,7 @@ public class MainAbilitySlice extends AbilitySlice  {
     private PageFlipper pageFlipper;
     private static final String TAG = "MainAbilitySlice";
     private static final HiLogLabel LABEL = new HiLogLabel(HiLog.ERROR, 0, TAG);
+    private static final String EXCEPTION_MESSAGE = "NotExistException or IOException exception occurred";
 
     @Override
     public void onStart(Intent intent) {
@@ -210,7 +211,7 @@ public class MainAbilitySlice extends AbilitySlice  {
             tab1.setIconElement(pixelMapElement);
             tab1.setPadding(20, 0, 5, 5);
         } catch (NotExistException | IOException e) {
-            HiLog.error(LABEL, "NotExistException or IOException exception occurred");
+            HiLog.error(LABEL, EXCEPTION_MESSAGE);
         }
         tab1.setText("Tab1");
         tabList.addTab(tab1);
@@ -224,7 +225,7 @@ public class MainAbilitySlice extends AbilitySlice  {
             tab2.setIconElement(pixelMapElement);
             tab2.setPadding(20, 0, 20, 5);
         } catch (NotExistException | IOException e) {
-            HiLog.error(LABEL, "NotExistException or IOException exception occurred");
+            HiLog.error(LABEL, EXCEPTION_MESSAGE);
         }
         tab2.setText("Tab2");
         tabList.addTab(tab2);
@@ -238,7 +239,7 @@ public class MainAbilitySlice extends AbilitySlice  {
             tab3.setIconElement(pixelMapElement);
             tab3.setPadding(20, 0, 20, 5);
         } catch (NotExistException | IOException e) {
-            HiLog.error(LABEL, "NotExistException or IOException exception occurred");
+            HiLog.error(LABEL, EXCEPTION_MESSAGE);
         }
         tab3.setText("Tab3");
         tabList.addTab(tab3);
