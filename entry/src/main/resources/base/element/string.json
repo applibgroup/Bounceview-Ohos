@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "BounceView"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "mainability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "no",
+      "value": "No"
+    },
+    {
+      "name": "yes",
+      "value": "Yes"
+    },
+    {
+      "name": "alert",
+      "value": "Alert"
+    },
+    {
+      "name": "CustomDialog",
+      "value": "Custom Dialog"
+    },
+    {
+      "name": "PopUpDialog",
+      "value": "PopUp Dialog"
+    },
+    {
+      "name": "Cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "dialog_message",
+      "value": "Do you really want to exit ?"
+    },
+    {
+      "name": "List_View",
+      "value": "List View"
+    },
+    {
+      "name": "coolAnim",
+      "value": "Cool Animation"
+    },
+    {
+      "name": "Dialogs",
+      "value": "Dialogs"
+    }
+  ]
+}

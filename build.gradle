@@ -1,34 +1,67 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'com.huawei.ohos.app'
+apply plugin: 'org.sonarqube'
+apply plugin: 'checkstyle'
 
-
+ohos {
+    compileSdkVersion 5
+    defaultConfig {
+        compatibleSdkVersion 5
+    }
+}
+	
 buildscript {
-    
     repositories {
-        google()
-        mavenCentral()
+        maven {
+            url 'https://repo.huaweicloud.com/repository/maven/'
+        }
+        maven {
+            url 'https://developer.huawei.com/repo/'
+        }
+		jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.0'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.huawei.ohos:hap:2.4.4.2'
+        classpath 'com.huawei.ohos:decctest:1.0.0.7'
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.3"
     }
 }
-
-plugins {
-    id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
-    id("org.jetbrains.dokka") version "1.4.32"
-}
-
-apply from: "${rootDir}/scripts/publish-root.gradle"
 
 allprojects {
     repositories {
-        google()
-        mavenCentral()
+        maven {
+            url 'https://repo.huaweicloud.com/repository/maven/'
+        }
+        maven {
+            url 'https://developer.huawei.com/repo/'
+        }
+        maven {
+            url 'https://mirrors.huaweicloud.com/repository/maven/'
+        }
+		jcenter()
+    }
+    task checkstyle(type: Checkstyle) {
+        showViolations = true
+        configFile file("config/checkstyle.xml")
+
+        source 'entry/src/main/java'
+        source 'bounceview-ohos/src/main/java'
+        include '**/*.java'
+
+        // empty classpath
+        classpath = files()
     }
 }
+checkstyle {
+    toolVersion "8.43"
+}
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+sonarqube {
+    properties {
+        property "sonar.projectKey", "applibgroup_Bounceview-Ohos"
+        property "sonar.organization", "applibgroup"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.sources", "entry,bounceview-ohos"
+        property "sonar.java.binaries", "entry/build,bounceview-ohos/build"
+        property "sonar.java.checkstyle.reportPaths", "build/reports/checkstyle/checkstyle.xml"
+    }
 }

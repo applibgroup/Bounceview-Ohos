@@ -1,1 +1,1 @@
-include ':app', ':bounceview-android'
+include ':entry', ':bounceview-ohos'

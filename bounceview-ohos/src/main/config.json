@@ -1,0 +1,28 @@
+{
+  "app": {
+    "bundleName": "com.github.hariprasanths.bounceviewsample",
+    "vendor": "github",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 5,
+      "target": 5,
+      "releaseType": "Release"
+    }
+  },
+  "deviceConfig": {
+  },
+  "module": {
+    "package": "com.github.hariprasanths.bounceview",
+    "deviceType": [
+      "phone","tablet","tv","wearable"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "bounceview-ohos",
+      "moduleType": "har"
+    }
+  }
+}

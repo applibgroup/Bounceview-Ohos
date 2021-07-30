@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:top_margin="20fp"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="$string:coolAnim"
+        ohos:text_size="30fp"
+        />
+    <Button
+        ohos:id="$+id:bounce"
+        ohos:height="50fp"
+        ohos:width="250fp"
+        ohos:background_element="$graphic:button_background"
+        ohos:text="Bounce"
+        ohos:clickable="true"
+        ohos:layout_alignment="center"
+        ohos:top_margin="50fp"
+        ohos:text_size="50px"
+        />
+    <Button
+        ohos:id="$+id:horizontalFlip"
+        ohos:height="50fp"
+        ohos:width="250fp"
+        ohos:background_element="$graphic:button_background"
+        ohos:text="Horizontal Flip"
+        ohos:clickable="true"
+        ohos:layout_alignment="center"
+        ohos:top_margin="50fp"
+        ohos:text_size="50px"
+        />
+    <Button
+        ohos:id="$+id:verticalFlip"
+        ohos:height="50fp"
+        ohos:width="250fp"
+        ohos:background_element="$graphic:button_background"
+        ohos:text="Vertical Flip"
+        ohos:clickable="true"
+        ohos:layout_alignment="center"
+        ohos:top_margin="50fp"
+        ohos:text_size="50px"
+        />
+    <Button
+        ohos:id="$+id:flicker"
+        ohos:height="50fp"
+        ohos:width="250fp"
+        ohos:background_element="$graphic:button_background"
+        ohos:text="Flicker"
+        ohos:clickable="true"
+        ohos:layout_alignment="center"
+        ohos:top_margin="50fp"
+        ohos:text_size="50px"
+        />
+
+
+</DirectionalLayout>
