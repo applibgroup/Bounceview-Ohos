@@ -107,11 +107,4 @@ public class CustomDialogTest {
         CustomDialog myCommonDialog = new CustomDialog(context);
         assertNull(myCommonDialog.getComponentContainer());
     }
-
-    @Test
-    public void testGetSetComponentContainer() {
-        CustomDialog myCommonDialog = new CustomDialog(context);
-        myCommonDialog.setComponentContainer(mComponent);
-        assertEquals(myCommonDialog.getComponentContainer(),mComponent);
-    }
 }

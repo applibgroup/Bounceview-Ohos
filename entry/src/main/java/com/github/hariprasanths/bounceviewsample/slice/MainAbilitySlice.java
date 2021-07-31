@@ -122,7 +122,7 @@ public class MainAbilitySlice extends AbilitySlice  {
             alertDialog.setContentText("Do you want to exit?");
             alertDialog.setCommonButton(0, "No", 100, 0, component12 -> alertDialog.destroy());
             alertDialog.setCommonButton(1, "Yes", 100, 0, component1 -> terminateAbility());
-            alertDialog.setSize(500,400);
+            alertDialog.setSize(500, 400);
             alertDialog.setAutoClosable(true);
             alertDialog.show();
             BounceView.addAnimTo(alertDialog);
@@ -174,7 +174,7 @@ public class MainAbilitySlice extends AbilitySlice  {
         tabList.setHeight(100);
         setTabs();
         int displayWidth = DisplayManager.getInstance().getDefaultDisplay(this).get().getRealAttributes().width;
-        tabList.setTabLength(displayWidth/3);
+        tabList.setTabLength(displayWidth / 3);
         tabList.setSelectedTabIndicatorColor(Color.GRAY.getValue());
         tabList.setIndicatorType(1);
         tabList.setTabTextColors(Color.BLACK.getValue(), Color.WHITE.getValue());
