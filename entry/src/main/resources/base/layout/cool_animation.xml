@@ -21,7 +21,7 @@
         ohos:clickable="true"
         ohos:layout_alignment="center"
         ohos:top_margin="50fp"
-        ohos:text_size="50px"
+        ohos:text_size="25fp"
         />
     <Button
         ohos:id="$+id:horizontalFlip"
@@ -32,7 +32,7 @@
         ohos:clickable="true"
         ohos:layout_alignment="center"
         ohos:top_margin="50fp"
-        ohos:text_size="50px"
+        ohos:text_size="25fp"
         />
     <Button
         ohos:id="$+id:verticalFlip"
@@ -43,7 +43,7 @@
         ohos:clickable="true"
         ohos:layout_alignment="center"
         ohos:top_margin="50fp"
-        ohos:text_size="50px"
+        ohos:text_size="25fp"
         />
     <Button
         ohos:id="$+id:flicker"
@@ -54,7 +54,7 @@
         ohos:clickable="true"
         ohos:layout_alignment="center"
         ohos:top_margin="50fp"
-        ohos:text_size="50px"
+        ohos:text_size="25fp"
         />
 
 

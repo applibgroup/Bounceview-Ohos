@@ -22,7 +22,7 @@
         ohos:clickable="true"
         ohos:layout_alignment="center"
         ohos:top_margin="50fp"
-        ohos:text_size="50px"
+        ohos:text_size="25fp"
         />
     <Button
         ohos:id="$+id:custom_dialog_button"
@@ -33,7 +33,7 @@
         ohos:clickable="true"
         ohos:layout_alignment="center"
         ohos:top_margin="50fp"
-        ohos:text_size="50px"
+        ohos:text_size="25fp"
         />
     <Button
         ohos:id="$+id:popup_dialog_button"
@@ -44,6 +44,6 @@
         ohos:clickable="true"
         ohos:layout_alignment="center"
         ohos:top_margin="50fp"
-        ohos:text_size="50px"
+        ohos:text_size="25fp"
         />
 </DirectionalLayout>

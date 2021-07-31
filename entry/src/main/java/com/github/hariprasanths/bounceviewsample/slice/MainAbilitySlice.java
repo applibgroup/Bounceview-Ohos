@@ -16,6 +16,7 @@
 
 package com.github.hariprasanths.bounceviewsample.slice;
 
+import static ohos.agp.components.ComponentContainer.LayoutConfig.MATCH_CONTENT;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.Button;
@@ -119,10 +120,11 @@ public class MainAbilitySlice extends AbilitySlice  {
         alert.setClickedListener(component -> {
             CustomDialog alertDialog = new CustomDialog(getContext());
             alertDialog.setTitleText("Alert Dialog");
-            alertDialog.setContentText("Do you want to exit?");
-            alertDialog.setCommonButton(0, "No", 100, 0, component12 -> alertDialog.destroy());
-            alertDialog.setCommonButton(1, "Yes", 100, 0, component1 -> terminateAbility());
-            alertDialog.setSize(400, 300);
+            alertDialog.setContentText("Do you want to exit ?");
+            alertDialog.setCommonButton(0, "NO", 100, 0, component12 -> alertDialog.destroy());
+            alertDialog.setCommonButton(1, "YES", 100, 0, component1 -> terminateAbility());
+            alertDialog.setSize(MATCH_CONTENT, MATCH_CONTENT);
+            alertDialog.setAlignment(TextAlignment.CENTER);
             alertDialog.setAutoClosable(true);
             alertDialog.show();
             BounceView.addAnimTo(alertDialog);
@@ -173,10 +175,8 @@ public class MainAbilitySlice extends AbilitySlice  {
     private void setTabListMethods() {
         tabList.setHeight(100);
         setTabs();
-        tabList.setTabLength(400);
-        int dis = DisplayManager.getInstance().getDefaultDisplay(this).get().getRealAttributes().width;
-        int diff = (dis - 3 * tabList.getTabLength()) / 2;
-        tabList.setPadding(diff, 0, diff, 0);
+        int displayWidth = DisplayManager.getInstance().getDefaultDisplay(this).get().getRealAttributes().width;
+        tabList.setTabLength(displayWidth / 3);
         tabList.setSelectedTabIndicatorColor(Color.GRAY.getValue());
         tabList.setIndicatorType(1);
         tabList.setTabTextColors(Color.BLACK.getValue(), Color.WHITE.getValue());

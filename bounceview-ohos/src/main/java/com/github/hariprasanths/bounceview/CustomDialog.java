@@ -67,10 +67,16 @@ public class CustomDialog extends CommonDialog {
         baseButtonLayout.setLayoutConfig(layoutConfig);
     }
 
-    public CommonDialog setComponentContainer(Component component) {
+    private CommonDialog setComponentContainer(Component component) {
         return super.setContentCustomComponent(component);
     }
 
+    /**
+     * After .show() is called, it will return container with all components set
+     * Behaviour before .show() will return null component.
+     *
+     * @return ComponentContainer with all components set all together
+     */
     public Component getComponentContainer() {
         return super.getContentCustomComponent();
     }
