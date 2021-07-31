@@ -29,6 +29,13 @@ Inspired by https://github.com/hariprasanths/Bounceview-Android Version v0.2.0
 		testImplementation 'junit:junit:4.13'
 	}
 ```
+3. For using Bounceview-Ohos from a remote repository in separate application, add the below dependencies in entry/build.gradle file.
+```groovy
+        dependencies {
+                implementation 'dev.applibgroup:bounceview-ohos:1.0.0'
+                testCompile 'junit:junit:4.13'
+        }
+```
 ## Usage
 
 ### Add animations to any components as below:
