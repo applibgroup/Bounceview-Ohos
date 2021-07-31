@@ -31,7 +31,7 @@ Inspired by https://github.com/hariprasanths/Bounceview-Android Version v0.2.0
 ```
 ## Usage
 
-<h5>Add animations to any components like so:</h5>
+### Add animations to any components as below:
 
 ```java
 Button button = (Button) findComponentById(ResourceTable.Id_button);
@@ -39,18 +39,22 @@ BounceView.addAnimTo(button);
 ```
 
 ### Use BounceView with dialogs:
-CustomDialog is our custom class extending CommonDialog. Most of the functionalities will be similarly used as used in CommonDialog.
-When you try to add dialogs title text, content, or buttons directly, It will take it and set those in our defined base Layout. You will be able to see similar behavior at your end like CommonDialog after .show() is called.
+CustomDialog is our custom class extending CommonDialog created for Bounce View animnation. Most of the functionalities will be similar to CommonDialog provided by HMOS platform.
 <br>
 Custom dialog is divided into three parts :
   1. title component
   2. content component
   3. button component
   <br>
-User can set the custom layout for 1 & 2. If not set, baselayout will be set. But for button component, user will not be able to customize the layout similar to CommonDialog.
+User can set the custom layout for 1 & 2. If not set, baselayout will be set. But for button component similar to CommonDialog behaviour, user will not be able to customize the Button layout .
 <br>
-In that case, user generally add content component with buttons in it and dont set buttons directly.
+In case user wants to customize the button layout, it is still possible by adding the customized buttons within the layout created for content component 
 
+```
+customDialog.setContentCustomComponent(customComponent);
+```
+
+#### a) Create Alert Dialog using CustomDialog 
 ```java
 // CustomDialog (Alert Dialog creation) when you directly set text, contents or button
 CustomDialog alertDialog = new CustomDialog(getContext());
@@ -64,6 +68,7 @@ alertDialog.show();
 BounceView.addAnimTo(alertDialog);  // always add BounceView after .show() is called
 ```
 
+#### b) CustomDialog with customized layout by user
 ```java
 // CustomDialog when you set customComponent
 CustomDialog commonDialog = new CustomDialog(getContext());
@@ -76,19 +81,21 @@ commonDialog.show();
 BounceView.addAnimTo(commonDialog); // always add BounceView after .show() is called
 ```
 
-CustomPopupDialog is our custom class extending PopupDialog. All functionalities will be similarly used as PopupDialog.
-When you try to created dialog by using ```setText("Hello World")``` or ```setBackColor(color)``` directly, It will take it and set those in our defined base Layout. You will be able to see similar behavior at your end like PopupDialog after .show() is called.
+#### c) Adding the customized layout to Custom popup Dialog 
 
 ```java
 CustomPopupDialog 
 DirectionalLayout customDialogLayout = (DirectionalLayout) LayoutScatter.getInstance(getContext())
-                    .parse(ResourceTable.Layout_custom_popup, null, false);
+        .parse(ResourceTable.Layout_custom_popup, null, false);
 CustomPopupDialog popupDialog = new CustomPopupDialog(getContext(), null); // can pass custom component and Dialog box width and height will be set to that of custom component
 popupDialog.setCustomComponent(customDialogLayout);
 popupDialog.setAutoClosable(true);
 popupDialog.show();
 BounceView.addAnimTo(popupDialog); // always add BounceView after .show() is called
 ```
+
+CustomPopupDialog is our custom class extending PopupDialog created for Bounce View animnation. Most of the functionalities will be similar to PopupDialog provided by HMOS platform. 
+When you try to create default popup dialog by using ```setText("Hello World")``` or ```setBackColor(color)``` directly, these will be set to our defined base Layout in the library.
 
 ### Some cool animations:
 
