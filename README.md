@@ -50,6 +50,7 @@ Custom dialog is divided into three parts :
 User can set the custom layout for 1 & 2. If not set, baselayout will be set. But for button component, user will not be able to customize the layout similar to CommonDialog.
 <br>
 In that case, user generally add content component with buttons in it and dont set buttons directly.
+
 ```java
 // CustomDialog (Alert Dialog creation) when you directly set text, contents or button
 CustomDialog alertDialog = new CustomDialog(getContext());
@@ -62,6 +63,7 @@ alertDialog.setAutoClosable(true);
 alertDialog.show();
 BounceView.addAnimTo(alertDialog);  // always add BounceView after .show() is called
 ```
+
 ```java
 // CustomDialog when you set customComponent
 CustomDialog commonDialog = new CustomDialog(getContext());
@@ -73,6 +75,7 @@ commonDialog.setAutoClosable(true);
 commonDialog.show();
 BounceView.addAnimTo(commonDialog); // always add BounceView after .show() is called
 ```
+
 CustomPopupDialog is our custom class extending PopupDialog. All functionalities will be similarly used as PopupDialog.
 When you try to created dialog by using ```setText("Hello World")``` or ```setBackColor(color)``` directly, It will take it and set those in our defined base Layout. You will be able to see similar behavior at your end like PopupDialog after .show() is called.
 

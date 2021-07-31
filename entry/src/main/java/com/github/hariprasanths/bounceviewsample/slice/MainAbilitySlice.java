@@ -27,6 +27,7 @@ import ohos.agp.components.TabList;
 import ohos.agp.components.element.PixelMapElement;
 import ohos.agp.utils.Color;
 import ohos.agp.utils.TextAlignment;
+import ohos.agp.window.dialog.CommonDialog;
 import ohos.agp.window.service.DisplayManager;
 import ohos.global.resource.NotExistException;
 import ohos.hiviewdfx.HiLog;
@@ -40,6 +41,8 @@ import com.github.hariprasanths.bounceviewsample.adapter.ListItemProvider;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static ohos.agp.components.ComponentContainer.LayoutConfig.MATCH_CONTENT;
 
 /**
  * MainAbilitySlice.
@@ -119,10 +122,11 @@ public class MainAbilitySlice extends AbilitySlice  {
         alert.setClickedListener(component -> {
             CustomDialog alertDialog = new CustomDialog(getContext());
             alertDialog.setTitleText("Alert Dialog");
-            alertDialog.setContentText("Do you want to exit?");
-            alertDialog.setCommonButton(0, "No", 100, 0, component12 -> alertDialog.destroy());
-            alertDialog.setCommonButton(1, "Yes", 100, 0, component1 -> terminateAbility());
-            alertDialog.setSize(500, 400);
+            alertDialog.setContentText("Do you want to exit ?");
+            alertDialog.setCommonButton(0, "NO", 100, 0, component12 -> alertDialog.destroy());
+            alertDialog.setCommonButton(1, "YES", 100, 0, component1 -> terminateAbility());
+            alertDialog.setSize(MATCH_CONTENT, MATCH_CONTENT);
+            alertDialog.setAlignment(TextAlignment.CENTER);
             alertDialog.setAutoClosable(true);
             alertDialog.show();
             BounceView.addAnimTo(alertDialog);
