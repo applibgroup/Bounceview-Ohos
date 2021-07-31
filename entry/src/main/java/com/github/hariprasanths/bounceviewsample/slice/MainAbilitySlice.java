@@ -16,6 +16,7 @@
 
 package com.github.hariprasanths.bounceviewsample.slice;
 
+import static ohos.agp.components.ComponentContainer.LayoutConfig.MATCH_CONTENT;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.Button;
@@ -27,7 +28,6 @@ import ohos.agp.components.TabList;
 import ohos.agp.components.element.PixelMapElement;
 import ohos.agp.utils.Color;
 import ohos.agp.utils.TextAlignment;
-import ohos.agp.window.dialog.CommonDialog;
 import ohos.agp.window.service.DisplayManager;
 import ohos.global.resource.NotExistException;
 import ohos.hiviewdfx.HiLog;
@@ -41,8 +41,6 @@ import com.github.hariprasanths.bounceviewsample.adapter.ListItemProvider;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static ohos.agp.components.ComponentContainer.LayoutConfig.MATCH_CONTENT;
 
 /**
  * MainAbilitySlice.
