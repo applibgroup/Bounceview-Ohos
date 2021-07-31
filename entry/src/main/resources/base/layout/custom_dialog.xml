@@ -61,7 +61,7 @@
                         ohos:text="$string:Cancel"
                         ohos:text_color="#ffffff"
                         ohos:element_left="$id:btn_yes"
-                        ohos:left_margin="90fp"
+                        ohos:left_margin="30fp"
                         />
 
                     <Button
